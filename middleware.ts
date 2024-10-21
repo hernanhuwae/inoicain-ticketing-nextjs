@@ -1,6 +1,6 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-const isProtectedRoute = createRouteMatcher(["/root/beranda"]);
+const isProtectedRoute = createRouteMatcher(["/root/beranda","/api/webhook/clerk"]);
 
 
 export default clerkMiddleware((auth,req)=>{
