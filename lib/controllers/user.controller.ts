@@ -2,16 +2,16 @@
 
 import { CreateUserParams, UpdateUserParams } from "@/types";
 import { handleError } from "../utils";
-import { connectDatabase } from "../database";
 import User from "../database/models/user.model";
 import { Promise } from "mongoose";
 import Event from "../database/models/event.model";
 import Order from "../database/models/order.model";
 import { revalidatePath } from "next/cache";
+import { connectdb } from "../database";
 
 export const createUser= async(user:CreateUserParams)=>{
     try {
-        await connectDatabase()
+        await connectdb()
 
         const newUser= await User.create(user)
 
@@ -23,7 +23,7 @@ export const createUser= async(user:CreateUserParams)=>{
 
 export const getUserById= async(userId:String)=>{
     try {
-        await connectDatabase()
+        await connectdb()
 
         const user= await User.findById(userId)
 
@@ -36,7 +36,7 @@ export const getUserById= async(userId:String)=>{
 
 export const updateUser= async(clerkId: String, user:UpdateUserParams)=>{
     try {
-        await connectDatabase()
+        await connectdb()
 
         const updateUser= await User.findOneAndUpdate({clerkId}, user, {new:true})
 
@@ -50,7 +50,7 @@ export const updateUser= async(clerkId: String, user:UpdateUserParams)=>{
 export const deleteUser= async(clerkId: String)=>{
     try {
 
-        await connectDatabase()
+        await connectdb()
 
         //Todo: 1. Search userId to delete
         const userIdDelete= await User.findOne(clerkId)

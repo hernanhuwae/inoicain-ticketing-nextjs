@@ -10,14 +10,14 @@ export interface IEvent extends Document{
     startDateTime:Date,
     endDateTime:Date,
     price:String,
-    isFree:String,
+    isFree:Boolean,
     url:String,
     category:{_id:String, name:String},
     organizer:{_id:String, firstName:String, lastName:String}
 }
 
 const EventSchema=new Schema({
-    title: {type:String, requred:true},
+    title: {type:String, required:true},
     desc:{type:String},
     location:{type:String},
     imageUrl:{type:String},
