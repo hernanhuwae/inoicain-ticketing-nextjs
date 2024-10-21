@@ -16,13 +16,13 @@ if (!cached) {
   };
 }
 
-export const connectdb = async () => {
+export const connect = async () => {
   if (cached.conn) return cached.conn;
 
   cached.promise =
     cached.promise ||
     mongoose.connect(MONGODB_URL, {
-      dbName: "ticketinoicain",
+      dbName: "lulusBSI",
       bufferCommands: false,
       connectTimeoutMS: 30000,
     });

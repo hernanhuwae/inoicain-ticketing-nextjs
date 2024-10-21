@@ -5,7 +5,7 @@ import konser from "../../../public/images/concert.png"
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Home() {
+export default function Beranda() {
   return (
     <>
       <Header/>

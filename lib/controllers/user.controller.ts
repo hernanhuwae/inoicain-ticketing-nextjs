@@ -7,11 +7,11 @@ import { Promise } from "mongoose";
 import Event from "../database/models/event.model";
 import Order from "../database/models/order.model";
 import { revalidatePath } from "next/cache";
-import { connectdb } from "../database";
+import { connect } from "@/db";
 
 export const createUser= async(user:CreateUserParams)=>{
     try {
-        await connectdb()
+        await connect()
 
         const newUser= await User.create(user)
 
@@ -23,8 +23,7 @@ export const createUser= async(user:CreateUserParams)=>{
 
 export const getUserById= async(userId:String)=>{
     try {
-        await connectdb()
-
+        await connect()
         const user= await User.findById(userId)
 
         if(!user) throw new Error ("User Not Found")
@@ -36,7 +35,7 @@ export const getUserById= async(userId:String)=>{
 
 export const updateUser= async(clerkId: String, user:UpdateUserParams)=>{
     try {
-        await connectdb()
+        await connect()
 
         const updateUser= await User.findOneAndUpdate({clerkId}, user, {new:true})
 
@@ -50,7 +49,7 @@ export const updateUser= async(clerkId: String, user:UpdateUserParams)=>{
 export const deleteUser= async(clerkId: String)=>{
     try {
 
-        await connectdb()
+        await connect()
 
         //Todo: 1. Search userId to delete
         const userIdDelete= await User.findOne(clerkId)
