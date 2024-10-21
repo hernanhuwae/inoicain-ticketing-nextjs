@@ -4,6 +4,7 @@ import { CreateCategoryParams } from "@/types"
 import { handleError } from "../utils"
 import Category from "../database/models/category.model"
 import { connect } from "@/db"
+import { NextResponse } from "next/server"
 
 export const createCategory = async ({ categoryName }: CreateCategoryParams) => {
   try {
@@ -23,8 +24,17 @@ export const getAllCategories = async () => {
 
     const categories = await Category.find();
 
-    return JSON.parse(JSON.stringify(categories));
+    // return JSON.parse(JSON.stringify(categories));
+    return NextResponse.json({
+        message: "success from GET",
+        status: 200,
+        data: categories,
+      });
   } catch (error) {
-    handleError(error)
+    return NextResponse.json({
+        message: "Errror from GET",
+        status: 404,
+        data: error,
+      });
   }
 }
