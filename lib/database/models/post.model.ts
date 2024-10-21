@@ -23,12 +23,12 @@ const postSchema = new Schema<iPostData>(
 
     user: {
       type: Types.ObjectId,
-      ref: "users",
+      ref: "User",
     },
   },
   { timestamps: true }
 );
 
-const postModel = models.posts || model<iPostData>("posts", postSchema);
+const postModel = models.posts || model<iPostData>("Post", postSchema);
 
 export default postModel;
